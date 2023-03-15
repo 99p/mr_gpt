@@ -1,0 +1,115 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyi71xoh1ubgn"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_dmgru"]
+[ext_resource type="Texture2D" uid="uid://cduygotsthf5x" path="res://assets/images/setting.png" id="2_caaxb"]
+[ext_resource type="FontFile" uid="uid://ddwbtubol7fhl" path="res://assets/fonts/NotoSansJP-Regular.otf" id="3_ksh4b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ipxan"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7crek"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 6.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dmgru")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -108.0
+offset_top = -128.0
+offset_right = 103.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "Go!"
+
+[node name="Settings" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -126.0
+offset_right = 120.0
+offset_bottom = -16.0
+grow_vertical = 0
+pivot_offset = Vector2(55, 55)
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ipxan")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7crek")
+icon = ExtResource("2_caaxb")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="GPT" type="Node" parent="."]
+
+[node name="System" type="TextEdit" parent="GPT"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 24.0
+offset_bottom = -861.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_ksh4b")
+theme_override_font_sizes/font_size = 32
+text = "You are dog!"
+placeholder_text = "System"
+middle_mouse_paste_enabled = false
+wrap_mode = 1
+scroll_smooth = true
+minimap_width = 26
+language = "ja"
+
+[node name="User" type="TextEdit" parent="GPT"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 175.0
+offset_bottom = -705.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/background_color = Color(0.337255, 0.313726, 0.290196, 1)
+theme_override_fonts/font = ExtResource("3_ksh4b")
+theme_override_font_sizes/font_size = 32
+text = "hi, Dog. what's up?"
+placeholder_text = "User"
+middle_mouse_paste_enabled = false
+wrap_mode = 1
+scroll_smooth = true
+minimap_width = 26
+language = "ja"
+
+[node name="Asistant" type="TextEdit" parent="GPT"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 331.0
+offset_bottom = -130.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/background_color = Color(0.219608, 0.184314, 0.152941, 1)
+theme_override_fonts/font = ExtResource("3_ksh4b")
+theme_override_font_sizes/font_size = 32
+placeholder_text = "Asistant"
+editable = false
+middle_mouse_paste_enabled = false
+wrap_mode = 1
+scroll_smooth = true
+minimap_width = 26
+language = "ja"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
