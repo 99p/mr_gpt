@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxe7dkpn0mvql"]
+[gd_scene load_steps=7 format=3 uid="uid://bxe7dkpn0mvql"]
 
-[ext_resource type="Script" path="res://setting.gd" id="1_r5rrg"]
+[ext_resource type="Script" path="res://assets/scripts/setting.gd" id="1_3vlew"]
+[ext_resource type="PackedScene" uid="uid://cyi71xoh1ubgn" path="res://assets/scenes/main.tscn" id="2_6arpt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m4myn"]
 corner_radius_top_left = 100
@@ -31,7 +32,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_r5rrg")
+script = ExtResource("1_3vlew")
+main = ExtResource("2_6arpt")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2

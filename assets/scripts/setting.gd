@@ -1,5 +1,7 @@
 extends Control
 
+@export var main: PackedScene
+
 func _ready():
 	var f = FileAccess.open("user://api.dat", FileAccess.READ)
 	if f:
@@ -8,5 +10,5 @@ func _ready():
 func _on_go_pressed():
 	var f = FileAccess.open("user://api.dat", FileAccess.WRITE)
 	f.store_string($TextEdit.text)
-	get_tree().change_scene_to_file("res://main.tscn")
+	get_tree().change_scene_to_packed(main)
 

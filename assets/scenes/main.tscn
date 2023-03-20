@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=3 uid="uid://cyi71xoh1ubgn"]
+
+[ext_resource type="Script" path="res://assets/scripts/main.gd" id="1_dvkbe"]
+[ext_resource type="Texture2D" uid="uid://cduygotsthf5x" path="res://assets/images/setting.png" id="2_caaxb"]
+[ext_resource type="Script" path="res://assets/scripts/SafeMarginContainer.gd" id="3_iw81n"]
+[ext_resource type="FontFile" uid="uid://ddwbtubol7fhl" path="res://assets/fonts/NotoSansJP-Regular.otf" id="3_ksh4b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ipxan"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7crek"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dvkbe")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 4
+script = ExtResource("3_iw81n")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="System" type="TextEdit" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 80)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ksh4b")
+theme_override_font_sizes/font_size = 32
+text = "You are dog!"
+placeholder_text = "System"
+middle_mouse_paste_enabled = false
+wrap_mode = 1
+scroll_smooth = true
+minimap_width = 26
+language = "ja"
+
+[node name="User" type="TextEdit" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 200)
+layout_mode = 2
+theme_override_colors/background_color = Color(0.337255, 0.313726, 0.290196, 1)
+theme_override_fonts/font = ExtResource("3_ksh4b")
+theme_override_font_sizes/font_size = 32
+text = "hi, Dog. what's up?"
+placeholder_text = "User"
+middle_mouse_paste_enabled = false
+wrap_mode = 1
+scroll_smooth = true
+minimap_width = 26
+language = "ja"
+
+[node name="Asistant" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 400)
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+selection_enabled = true
+language = "ja"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 64
+text = "Go!"
+
+[node name="Setting" type="Button" parent="MarginContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ipxan")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7crek")
+icon = ExtResource("2_caaxb")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="MarginContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Setting" to="." method="_on_settings_pressed"]
