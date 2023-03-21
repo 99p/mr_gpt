@@ -1,9 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxe7dkpn0mvql"]
+[gd_scene load_steps=10 format=3 uid="uid://bxe7dkpn0mvql"]
 
 [ext_resource type="Script" path="res://assets/scripts/setting.gd" id="1_3vlew"]
-[ext_resource type="PackedScene" uid="uid://cyi71xoh1ubgn" path="res://assets/scenes/main.tscn" id="2_6arpt"]
+[ext_resource type="PackedScene" uid="uid://0vn1tm0iy5yk" path="res://assets/scenes/main.tscn" id="2_6arpt"]
+[ext_resource type="FontFile" uid="uid://2acuf5q3heir" path="res://addons/fontawesome/fonts/fa-solid-900.woff2" id="3_x36t3"]
+[ext_resource type="Script" path="res://addons/fontawesome/FontAwesome.gd" id="4_bbmxb"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m4myn"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2pphe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r6tib"]
+content_margin_bottom = 4.0
 corner_radius_top_left = 100
 corner_radius_top_right = 100
 corner_radius_bottom_right = 100
@@ -25,8 +30,7 @@ corner_radius_bottom_left = 100
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2dmb"]
 
-[node name="Setting" type="Control"]
-layout_mode = 3
+[node name="Setting" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -35,32 +39,53 @@ grow_vertical = 2
 script = ExtResource("1_3vlew")
 main = ExtResource("2_6arpt")
 
-[node name="Label" type="Label" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
-offset_right = 966.0
-offset_bottom = 91.0
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2pphe")
+flat = true
+
+[node name="FontAwesome" type="Label" parent="VBoxContainer/Button"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+auto_translate = false
+localize_numeral_system = false
+theme_override_colors/font_color = Color(0.635294, 0.635294, 0.635294, 1)
+theme_override_fonts/font = ExtResource("3_x36t3")
 theme_override_font_sizes/font_size = 64
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_bbmxb")
+icon_size = 64
+icon_name = "arrow-left"
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "API Key"
 
-[node name="TextEdit" type="TextEdit" parent="."]
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
 layout_mode = 2
-offset_top = 95.0
-offset_right = 966.0
-offset_bottom = 320.0
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 20
 placeholder_text = "your chatgpt api key"
 
 [node name="Go" type="Button" parent="."]
-layout_mode = 0
-offset_left = 376.0
-offset_top = 370.0
-offset_right = 616.0
-offset_bottom = 481.0
-theme_override_font_sizes/font_size = 64
-theme_override_styles/normal = SubResource("StyleBoxFlat_m4myn")
+custom_minimum_size = Vector2(200, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_r6tib")
 theme_override_styles/hover = SubResource("StyleBoxFlat_v0nev")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8ig5n")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_h2dmb")
 text = "save"
 
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Go" to="." method="_on_go_pressed"]

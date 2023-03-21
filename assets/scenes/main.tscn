@@ -1,96 +1,186 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyi71xoh1ubgn"]
+[gd_scene load_steps=15 format=3 uid="uid://0vn1tm0iy5yk"]
 
 [ext_resource type="Script" path="res://assets/scripts/main.gd" id="1_dvkbe"]
-[ext_resource type="Texture2D" uid="uid://cduygotsthf5x" path="res://assets/images/setting.png" id="2_caaxb"]
-[ext_resource type="Script" path="res://assets/scripts/SafeMarginContainer.gd" id="3_iw81n"]
 [ext_resource type="FontFile" uid="uid://ddwbtubol7fhl" path="res://assets/fonts/NotoSansJP-Regular.otf" id="3_ksh4b"]
+[ext_resource type="FontFile" uid="uid://2acuf5q3heir" path="res://addons/fontawesome/fonts/fa-solid-900.woff2" id="4_xnnnh"]
+[ext_resource type="Script" path="res://addons/fontawesome/FontAwesome.gd" id="5_bh07q"]
+[ext_resource type="StyleBox" uid="uid://3qgratkxmfpk" path="res://assets/styles/input.tres" id="5_js587"]
+[ext_resource type="StyleBox" uid="uid://de2sqbsxoj51b" path="res://assets/styles/user.tres" id="5_lmfb6"]
+[ext_resource type="StyleBox" uid="uid://c147d3e2gpkfs" path="res://assets/styles/asistant.tres" id="5_rh8tc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mwg5g"]
+content_margin_left = 20.0
+content_margin_bottom = 4.0
+bg_color = Color(0.168627, 0.168627, 0.168627, 1)
+expand_margin_right = 56.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8e55d"]
+content_margin_left = 20.0
+content_margin_bottom = 4.0
+bg_color = Color(0.168627, 0.168627, 0.168627, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.478431, 0.478431, 0.478431, 1)
+expand_margin_right = 56.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ipxan"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7crek"]
 
-[node name="Main" type="Control"]
-layout_mode = 3
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pcqo5"]
+content_margin_left = 20.0
+content_margin_bottom = 4.0
+bg_color = Color(0.0862745, 0.298039, 0.223529, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o8tvf"]
+content_margin_left = 20.0
+bg_color = Color(0.184314, 0.184314, 0.184314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugueg"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+
+[node name="Main" type="MarginContainer" node_paths=PackedStringArray("system", "user", "asistant", "input", "setting_button")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dvkbe")
+system = NodePath("View/Header/System")
+user = NodePath("View/ScrollContainer/Body/User")
+asistant = NodePath("View/ScrollContainer/Body/Asistant")
+input = NodePath("View/Footer/Input")
+setting_button = NodePath("View/Header/SettingButton")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_top = 4
-script = ExtResource("3_iw81n")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="View" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="System" type="TextEdit" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(2.08165e-12, 80)
+[node name="Header" type="HBoxContainer" parent="View"]
 layout_mode = 2
+size_flags_vertical = 0
+
+[node name="System" type="LineEdit" parent="View/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_ksh4b")
-theme_override_font_sizes/font_size = 32
-text = "You are dog!"
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_mwg5g")
+theme_override_styles/focus = SubResource("StyleBoxFlat_8e55d")
 placeholder_text = "System"
+context_menu_enabled = false
 middle_mouse_paste_enabled = false
-wrap_mode = 1
-scroll_smooth = true
-minimap_width = 26
+caret_blink = true
+caret_blink_interval = 0.5
 language = "ja"
 
-[node name="User" type="TextEdit" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(2.08165e-12, 200)
+[node name="SettingButton" type="Button" parent="View/Header"]
+custom_minimum_size = Vector2(52, 52)
 layout_mode = 2
-theme_override_colors/background_color = Color(0.337255, 0.313726, 0.290196, 1)
-theme_override_fonts/font = ExtResource("3_ksh4b")
-theme_override_font_sizes/font_size = 32
-text = "hi, Dog. what's up?"
-placeholder_text = "User"
-middle_mouse_paste_enabled = false
-wrap_mode = 1
-scroll_smooth = true
-minimap_width = 26
-language = "ja"
-
-[node name="Asistant" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(2.08165e-12, 400)
-layout_mode = 2
-size_flags_vertical = 3
-focus_mode = 2
-theme_override_font_sizes/normal_font_size = 32
-selection_enabled = true
-language = "ja"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(2.08165e-12, 100)
-layout_mode = 2
-alignment = 1
-
-[node name="Button" type="Button" parent="MarginContainer"]
-custom_minimum_size = Vector2(200, 100)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme_override_font_sizes/font_size = 64
-text = "Go!"
-
-[node name="Setting" type="Button" parent="MarginContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
 theme_override_styles/hover = SubResource("StyleBoxEmpty_ipxan")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_7crek")
-icon = ExtResource("2_caaxb")
 flat = true
 icon_alignment = 1
 expand_icon = true
 
-[connection signal="pressed" from="MarginContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/Setting" to="." method="_on_settings_pressed"]
+[node name="FontAwesome" type="Label" parent="View/Header/SettingButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -21.5
+offset_right = 20.0
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(19, 21)
+auto_translate = false
+localize_numeral_system = false
+theme_override_colors/font_color = Color(0.905882, 0.905882, 0.905882, 1)
+theme_override_fonts/font = ExtResource("4_xnnnh")
+theme_override_font_sizes/font_size = 40
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_bh07q")
+icon_size = 40
+icon_name = "gear"
+
+[node name="Footer" type="HBoxContainer" parent="View"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Input" type="LineEdit" parent="View/Footer"]
+custom_minimum_size = Vector2(2.08165e-12, 52)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("3_ksh4b")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = ExtResource("5_js587")
+theme_override_styles/focus = SubResource("StyleBoxFlat_pcqo5")
+placeholder_text = "User"
+middle_mouse_paste_enabled = false
+caret_blink = true
+caret_blink_interval = 0.5
+language = "ja"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="View"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Body" type="VBoxContainer" parent="View/ScrollContainer"]
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="User" type="RichTextLabel" parent="View/ScrollContainer/Body"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 2
+focus_mode = 2
+theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/bold_font_size = 26
+theme_override_font_sizes/italics_font_size = 26
+theme_override_font_sizes/bold_italics_font_size = 26
+theme_override_font_sizes/mono_font_size = 26
+theme_override_styles/focus = ExtResource("5_rh8tc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_o8tvf")
+scroll_following = true
+selection_enabled = true
+language = "ja"
+
+[node name="Asistant" type="RichTextLabel" parent="View/ScrollContainer/Body"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 2
+theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/bold_font_size = 26
+theme_override_font_sizes/italics_font_size = 26
+theme_override_font_sizes/bold_italics_font_size = 26
+theme_override_font_sizes/mono_font_size = 26
+theme_override_styles/focus = ExtResource("5_lmfb6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ugueg")
+text = "Asistant"
+scroll_following = true
+selection_enabled = true
+language = "ja"
+
+[connection signal="pressed" from="View/Header/SettingButton" to="." method="_on_settings_pressed"]
+[connection signal="text_submitted" from="View/Footer/Input" to="." method="_on_user_text_submitted"]
