@@ -7,9 +7,9 @@ func _ready() -> void:
 
     # BASE MARGINS
     var top: int = 8
-    var left: int = 8
+    var left: int = 0
     var bottom: int = 8
-    var right: int = 8
+    var right: int = 0
 
     if window_size.x >= safe_area.size.x and window_size.y >= safe_area.size.y:
         var x_factor: float = size.x / window_size.x

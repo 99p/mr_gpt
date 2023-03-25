@@ -32,6 +32,11 @@ project/assembly_name="mr_gpt"
 
 enabled=PackedStringArray("res://addons/fontawesome/plugin.cfg")
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [rendering]
 
+renderer/rendering_method="mobile"
 textures/vram_compression/import_s3tc_bptc=true

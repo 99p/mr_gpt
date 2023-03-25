@@ -1,79 +1,145 @@
-[gd_scene load_steps=15 format=3 uid="uid://0vn1tm0iy5yk"]
+[gd_scene load_steps=17 format=3 uid="uid://djnebgx276cwg"]
 
 [ext_resource type="Script" path="res://assets/scripts/main.gd" id="1_dvkbe"]
+[ext_resource type="Script" path="res://assets/scripts/SafeMarginContainer.gd" id="2_2m0xd"]
 [ext_resource type="FontFile" uid="uid://ddwbtubol7fhl" path="res://assets/fonts/NotoSansJP-Regular.otf" id="3_ksh4b"]
 [ext_resource type="FontFile" uid="uid://2acuf5q3heir" path="res://addons/fontawesome/fonts/fa-solid-900.woff2" id="4_xnnnh"]
 [ext_resource type="Script" path="res://addons/fontawesome/FontAwesome.gd" id="5_bh07q"]
 [ext_resource type="StyleBox" uid="uid://3qgratkxmfpk" path="res://assets/styles/input.tres" id="5_js587"]
-[ext_resource type="StyleBox" uid="uid://de2sqbsxoj51b" path="res://assets/styles/user.tres" id="5_lmfb6"]
-[ext_resource type="StyleBox" uid="uid://c147d3e2gpkfs" path="res://assets/styles/asistant.tres" id="5_rh8tc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mwg5g"]
 content_margin_left = 20.0
 content_margin_bottom = 4.0
-bg_color = Color(0.168627, 0.168627, 0.168627, 1)
-expand_margin_right = 56.0
+bg_color = Color(0.101961, 0.101961, 0.101961, 0.976471)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8e55d"]
 content_margin_left = 20.0
 content_margin_bottom = 4.0
 bg_color = Color(0.168627, 0.168627, 0.168627, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m36xq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5p02q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h464w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bx5x1"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.478431, 0.478431, 0.478431, 1)
-expand_margin_right = 56.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ipxan"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7crek"]
+border_color = Color(0.4, 0.4, 0.4, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+expand_margin_left = 3.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pcqo5"]
 content_margin_left = 20.0
 content_margin_bottom = 4.0
 bg_color = Color(0.0862745, 0.298039, 0.223529, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o8tvf"]
-content_margin_left = 20.0
-bg_color = Color(0.184314, 0.184314, 0.184314, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qrhkf"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugueg"]
-content_margin_left = 20.0
-content_margin_top = 10.0
-content_margin_right = 20.0
-content_margin_bottom = 10.0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_86j7s"]
 
-[node name="Main" type="MarginContainer" node_paths=PackedStringArray("system", "user", "asistant", "input", "setting_button")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mlgbx"]
+
+[node name="Main" type="Control" node_paths=PackedStringArray("view_body", "system", "input", "setting_button", "scroll", "vkmock1", "vkmock2")]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dvkbe")
-system = NodePath("View/Header/System")
-user = NodePath("View/ScrollContainer/Body/User")
-asistant = NodePath("View/ScrollContainer/Body/Asistant")
-input = NodePath("View/Footer/Input")
-setting_button = NodePath("View/Header/SettingButton")
+view_body = NodePath("SafeMarginContainer/ScrollContainer/Body")
+system = NodePath("SafeMarginContainer/Header/System")
+input = NodePath("SafeMarginContainer/Footer/VBoxContainer/Input")
+setting_button = NodePath("SafeMarginContainer/Header/System/SettingButton")
+scroll = NodePath("SafeMarginContainer/ScrollContainer")
+vkmock1 = NodePath("SafeMarginContainer/Footer/VBoxContainer/VKmock1")
+vkmock2 = NodePath("SafeMarginContainer/ScrollContainer/Body/VKmock2")
 
-[node name="View" type="VBoxContainer" parent="."]
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+color = Color(0.0745098, 0.105882, 0.14902, 1)
+
+[node name="SafeMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_2m0xd")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SafeMarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="Body" type="VBoxContainer" parent="SafeMarginContainer/ScrollContainer"]
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="Control" type="Control" parent="SafeMarginContainer/ScrollContainer/Body"]
+custom_minimum_size = Vector2(2.08165e-12, 60)
 layout_mode = 2
 
-[node name="Header" type="HBoxContainer" parent="View"]
+[node name="Control2" type="Control" parent="SafeMarginContainer/ScrollContainer/Body"]
+custom_minimum_size = Vector2(2.08165e-12, 40)
+layout_mode = 2
+
+[node name="VKmock2" type="Control" parent="SafeMarginContainer/ScrollContainer/Body"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Header" type="MarginContainer" parent="SafeMarginContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
 
-[node name="System" type="LineEdit" parent="View/Header"]
+[node name="System" type="LineEdit" parent="SafeMarginContainer/Header"]
+custom_minimum_size = Vector2(2.08165e-12, 70)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_ksh4b")
@@ -81,22 +147,149 @@ theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = SubResource("StyleBoxFlat_mwg5g")
 theme_override_styles/focus = SubResource("StyleBoxFlat_8e55d")
 placeholder_text = "System"
+alignment = 1
 context_menu_enabled = false
 middle_mouse_paste_enabled = false
 caret_blink = true
 caret_blink_interval = 0.5
 language = "ja"
 
-[node name="SettingButton" type="Button" parent="View/Header"]
-custom_minimum_size = Vector2(52, 52)
-layout_mode = 2
-theme_override_styles/hover = SubResource("StyleBoxEmpty_ipxan")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_7crek")
-flat = true
+[node name="BackButton" type="Button" parent="SafeMarginContainer/Header/System"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 13.0
+offset_top = -30.0
+offset_right = 73.0
+offset_bottom = 30.0
+grow_vertical = 2
+focus_next = NodePath("../../../Footer/VBoxContainer/Input")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_m36xq")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5p02q")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_h464w")
+theme_override_styles/focus = SubResource("StyleBoxFlat_bx5x1")
 icon_alignment = 1
-expand_icon = true
 
-[node name="FontAwesome" type="Label" parent="View/Header/SettingButton"]
+[node name="FontAwesome" type="Label" parent="SafeMarginContainer/Header/System/BackButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(19, 21)
+auto_translate = false
+localize_numeral_system = false
+theme_override_colors/font_color = Color(0.905882, 0.905882, 0.905882, 1)
+theme_override_fonts/font = ExtResource("4_xnnnh")
+theme_override_font_sizes/font_size = 40
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_bh07q")
+icon_size = 40
+icon_name = "chevron-left"
+
+[node name="SettingButton" type="Button" parent="SafeMarginContainer/Header/System"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -30.0
+offset_right = -10.0
+offset_bottom = 30.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_next = NodePath("../../../Footer/VBoxContainer/Input")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_m36xq")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5p02q")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_h464w")
+theme_override_styles/focus = SubResource("StyleBoxFlat_bx5x1")
+icon_alignment = 1
+
+[node name="FontAwesome" type="Label" parent="SafeMarginContainer/Header/System/SettingButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.5
+offset_right = 20.0
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(19, 21)
+auto_translate = false
+localize_numeral_system = false
+theme_override_colors/font_color = Color(0.905882, 0.905882, 0.905882, 1)
+theme_override_fonts/font = ExtResource("4_xnnnh")
+theme_override_font_sizes/font_size = 40
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_bh07q")
+icon_size = 40
+icon_name = "gear"
+
+[node name="Footer" type="MarginContainer" parent="SafeMarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SafeMarginContainer/Footer"]
+layout_mode = 2
+
+[node name="Input" type="LineEdit" parent="SafeMarginContainer/Footer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+focus_next = NodePath("../../../Header/System")
+theme_override_fonts/font = ExtResource("3_ksh4b")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = ExtResource("5_js587")
+theme_override_styles/focus = SubResource("StyleBoxFlat_pcqo5")
+placeholder_text = "User"
+middle_mouse_paste_enabled = false
+caret_blink = true
+caret_blink_interval = 0.5
+language = "ja"
+
+[node name="SendButton" type="Button" parent="SafeMarginContainer/Footer/VBoxContainer/Input"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -29.0
+offset_right = -13.0
+offset_bottom = 31.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qrhkf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_86j7s")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mlgbx")
+icon_alignment = 1
+
+[node name="FontAwesome" type="Label" parent="SafeMarginContainer/Footer/VBoxContainer/Input/SendButton"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -115,72 +308,21 @@ localize_numeral_system = false
 theme_override_colors/font_color = Color(0.905882, 0.905882, 0.905882, 1)
 theme_override_fonts/font = ExtResource("4_xnnnh")
 theme_override_font_sizes/font_size = 40
-text = ""
+text = ""
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("5_bh07q")
 icon_size = 40
-icon_name = "gear"
+icon_name = "comment"
 
-[node name="Footer" type="HBoxContainer" parent="View"]
+[node name="VKmock1" type="Control" parent="SafeMarginContainer/Footer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 8
+mouse_filter = 2
 
-[node name="Input" type="LineEdit" parent="View/Footer"]
-custom_minimum_size = Vector2(2.08165e-12, 52)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("3_ksh4b")
-theme_override_font_sizes/font_size = 26
-theme_override_styles/normal = ExtResource("5_js587")
-theme_override_styles/focus = SubResource("StyleBoxFlat_pcqo5")
-placeholder_text = "User"
-middle_mouse_paste_enabled = false
-caret_blink = true
-caret_blink_interval = 0.5
-language = "ja"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="View"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Body" type="VBoxContainer" parent="View/ScrollContainer"]
-layout_direction = 1
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="User" type="RichTextLabel" parent="View/ScrollContainer/Body"]
-custom_minimum_size = Vector2(2.08165e-12, 100)
-layout_mode = 2
-focus_mode = 2
-theme_override_font_sizes/normal_font_size = 26
-theme_override_font_sizes/bold_font_size = 26
-theme_override_font_sizes/italics_font_size = 26
-theme_override_font_sizes/bold_italics_font_size = 26
-theme_override_font_sizes/mono_font_size = 26
-theme_override_styles/focus = ExtResource("5_rh8tc")
-theme_override_styles/normal = SubResource("StyleBoxFlat_o8tvf")
-scroll_following = true
-selection_enabled = true
-language = "ja"
-
-[node name="Asistant" type="RichTextLabel" parent="View/ScrollContainer/Body"]
-layout_mode = 2
-size_flags_vertical = 3
-focus_mode = 2
-theme_override_font_sizes/normal_font_size = 26
-theme_override_font_sizes/bold_font_size = 26
-theme_override_font_sizes/italics_font_size = 26
-theme_override_font_sizes/bold_italics_font_size = 26
-theme_override_font_sizes/mono_font_size = 26
-theme_override_styles/focus = ExtResource("5_lmfb6")
-theme_override_styles/normal = SubResource("StyleBoxFlat_ugueg")
-text = "Asistant"
-scroll_following = true
-selection_enabled = true
-language = "ja"
-
-[connection signal="pressed" from="View/Header/SettingButton" to="." method="_on_settings_pressed"]
-[connection signal="text_submitted" from="View/Footer/Input" to="." method="_on_user_text_submitted"]
+[connection signal="gui_input" from="SafeMarginContainer/ScrollContainer" to="." method="_on_view_gui_input"]
+[connection signal="pressed" from="SafeMarginContainer/Header/System/BackButton" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="SafeMarginContainer/Header/System/SettingButton" to="." method="_on_settings_pressed"]
+[connection signal="focus_entered" from="SafeMarginContainer/Footer/VBoxContainer/Input" to="." method="_on_input_focus_entered"]
+[connection signal="focus_exited" from="SafeMarginContainer/Footer/VBoxContainer/Input" to="." method="_on_input_focus_exited"]
+[connection signal="text_submitted" from="SafeMarginContainer/Footer/VBoxContainer/Input" to="." method="_on_user_text_submitted"]
+[connection signal="pressed" from="SafeMarginContainer/Footer/VBoxContainer/Input/SendButton" to="." method="_on_user_text_submitted"]
