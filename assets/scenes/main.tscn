@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://djnebgx276cwg"]
+[gd_scene load_steps=19 format=3 uid="uid://djnebgx276cwg"]
 
 [ext_resource type="Script" path="res://assets/scripts/main.gd" id="1_dvkbe"]
 [ext_resource type="Script" path="res://assets/scripts/SafeMarginContainer.gd" id="2_2m0xd"]
@@ -10,7 +10,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mwg5g"]
 content_margin_left = 20.0
 content_margin_bottom = 4.0
-bg_color = Color(0.101961, 0.101961, 0.101961, 0.976471)
+bg_color = Color(0.101961, 0.101961, 0.101961, 0.85098)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -23,7 +23,7 @@ corner_radius_bottom_left = 30
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8e55d"]
 content_margin_left = 20.0
 content_margin_bottom = 4.0
-bg_color = Color(0.168627, 0.168627, 0.168627, 1)
+bg_color = Color(0.168627, 0.168627, 0.168627, 0.937255)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -52,10 +52,17 @@ corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 expand_margin_left = 3.0
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8n1ah"]
+
+[sub_resource type="Theme" id="Theme_3df1q"]
+default_font = ExtResource("3_ksh4b")
+TextEdit/font_sizes/font_size = 36
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_8n1ah")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pcqo5"]
 content_margin_left = 20.0
 content_margin_bottom = 4.0
-bg_color = Color(0.0862745, 0.298039, 0.223529, 1)
+bg_color = Color(0.0862745, 0.298039, 0.223529, 0.964706)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -121,11 +128,11 @@ size_flags_vertical = 3
 theme_override_constants/separation = 20
 
 [node name="Control" type="Control" parent="SafeMarginContainer/ScrollContainer/Body"]
-custom_minimum_size = Vector2(2.08165e-12, 60)
+custom_minimum_size = Vector2(2.08165e-12, 70)
 layout_mode = 2
 
 [node name="Control2" type="Control" parent="SafeMarginContainer/ScrollContainer/Body"]
-custom_minimum_size = Vector2(2.08165e-12, 40)
+custom_minimum_size = Vector2(2.08165e-12, 60)
 layout_mode = 2
 
 [node name="VKmock2" type="Control" parent="SafeMarginContainer/ScrollContainer/Body"]
@@ -139,15 +146,17 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
 [node name="System" type="LineEdit" parent="SafeMarginContainer/Header"]
-custom_minimum_size = Vector2(2.08165e-12, 70)
+custom_minimum_size = Vector2(2.08165e-12, 64)
 layout_mode = 2
 size_flags_horizontal = 3
+focus_next = NodePath("BackButton")
 theme_override_fonts/font = ExtResource("3_ksh4b")
 theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = SubResource("StyleBoxFlat_mwg5g")
 theme_override_styles/focus = SubResource("StyleBoxFlat_8e55d")
-placeholder_text = "System"
+theme_override_styles/read_only = SubResource("StyleBoxFlat_mwg5g")
 alignment = 1
+editable = false
 context_menu_enabled = false
 middle_mouse_paste_enabled = false
 caret_blink = true
@@ -165,7 +174,7 @@ offset_top = -30.0
 offset_right = 73.0
 offset_bottom = 30.0
 grow_vertical = 2
-focus_next = NodePath("../../../Footer/VBoxContainer/Input")
+focus_next = NodePath("../SettingButton")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_m36xq")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_5p02q")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_h464w")
@@ -254,18 +263,20 @@ theme_override_constants/margin_right = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="SafeMarginContainer/Footer"]
 layout_mode = 2
 
-[node name="Input" type="LineEdit" parent="SafeMarginContainer/Footer/VBoxContainer"]
-custom_minimum_size = Vector2(2.08165e-12, 70)
+[node name="Input" type="TextEdit" parent="SafeMarginContainer/Footer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
-focus_next = NodePath("../../../Header/System")
+focus_next = NodePath("../../../Header/System/BackButton")
+theme = SubResource("Theme_3df1q")
 theme_override_fonts/font = ExtResource("3_ksh4b")
 theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = ExtResource("5_js587")
 theme_override_styles/focus = SubResource("StyleBoxFlat_pcqo5")
 placeholder_text = "User"
 middle_mouse_paste_enabled = false
+wrap_mode = 1
 caret_blink = true
 caret_blink_interval = 0.5
 language = "ja"
@@ -273,17 +284,17 @@ language = "ja"
 [node name="SendButton" type="Button" parent="SafeMarginContainer/Footer/VBoxContainer/Input"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 1
-anchors_preset = 6
+anchors_preset = 3
 anchor_left = 1.0
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -73.0
-offset_top = -29.0
-offset_right = -13.0
-offset_bottom = 31.0
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = -60.0
+offset_right = -10.0
+offset_bottom = 4.57764e-05
 grow_horizontal = 0
-grow_vertical = 2
+grow_vertical = 0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qrhkf")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_86j7s")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_mlgbx")
@@ -324,5 +335,6 @@ mouse_filter = 2
 [connection signal="pressed" from="SafeMarginContainer/Header/System/SettingButton" to="." method="_on_settings_pressed"]
 [connection signal="focus_entered" from="SafeMarginContainer/Footer/VBoxContainer/Input" to="." method="_on_input_focus_entered"]
 [connection signal="focus_exited" from="SafeMarginContainer/Footer/VBoxContainer/Input" to="." method="_on_input_focus_exited"]
-[connection signal="text_submitted" from="SafeMarginContainer/Footer/VBoxContainer/Input" to="." method="_on_user_text_submitted"]
-[connection signal="pressed" from="SafeMarginContainer/Footer/VBoxContainer/Input/SendButton" to="." method="_on_user_text_submitted"]
+[connection signal="gui_input" from="SafeMarginContainer/Footer/VBoxContainer/Input" to="." method="_on_input_gui_input"]
+[connection signal="text_changed" from="SafeMarginContainer/Footer/VBoxContainer/Input" to="." method="_on_input_text_changed"]
+[connection signal="pressed" from="SafeMarginContainer/Footer/VBoxContainer/Input/SendButton" to="." method="_on_send_button_pressed"]

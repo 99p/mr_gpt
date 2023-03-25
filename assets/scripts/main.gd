@@ -7,7 +7,7 @@ var user_baloon = preload("res://assets/scenes/user_baloon.tscn")
 var assistant_baloon = preload("res://assets/scenes/assistant_baloon.tscn")
 var user: Node
 var assistant: Node
-@export var input: Node
+@export var input: TextEdit
 @export var setting_button: Node
 @export var scroll: ScrollContainer
 @export var vkmock1: Control
@@ -17,6 +17,7 @@ var touch_time = 0
 var touch_pos = 0
 var messages = []
 var temperature = 0.9
+var before_input_count
 
 enum vkAnim { UP, DOWN }
 
@@ -74,26 +75,19 @@ func gpt():
 func _on_http_request_request_completed(_result:int, _response_code:int, _headers:PackedStringArray, body:PackedByteArray):
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	messages.append(json.choices[0].message)
-	print(json)
+	# print(json)
 
-	assistant = assistant_baloon.instantiate()
-	assistant.name = "Assistant"
-	view_body.add_child(assistant)
-	view_body.move_child(assistant, view_body.get_children().size() - 3)
-	assistant.text = json.choices[0].message.content
-
-	var scrollbar = scroll.get_v_scroll_bar()
-	var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.parallel().tween_property(scroll, "scroll_vertical", scrollbar.max_value, 1)
+	add_baloon("assistant", json.choices[0].message.content)
 
 func _on_user_text_submitted(_new_text:String):
-	user = user_baloon.instantiate()
-	user.name = "User"
-	view_body.add_child(user)
-	view_body.move_child(user, view_body.get_children().size() - 3)
-	user.text = input.text
+	if input.text == '':
+		return
+	var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	var before_y = input.get_custom_minimum_size().y
+	tween.tween_method(input.set_custom_minimum_size, Vector2(0, before_y), Vector2(0, 64), 0.2)
+
+	add_baloon("user", input.text)
 	input.text = ''
-	input.release_focus()
 	gpt()
 
 func _on_input_focus_entered():
@@ -134,6 +128,7 @@ func vkAnimation(mode):
 			tween.parallel().tween_property(scroll, "scroll_vertical", scrollbar.max_value, 0.425)
 
 
+# input外タップでアンフォーカス
 func _on_view_gui_input(event:InputEvent):
 	if (event is InputEventMouseButton) and event.pressed:
 		touch_time = Time.get_unix_time_from_system()
@@ -145,3 +140,53 @@ func _on_view_gui_input(event:InputEvent):
 			system.release_focus()
 			input.release_focus()
 
+
+func _on_send_button_pressed():
+	_on_user_text_submitted("")
+
+func add_baloon(role, text):
+	var baloon
+	match role:
+		"user":
+			user = user_baloon.instantiate()
+			baloon = user
+		"assistant":
+			assistant = assistant_baloon.instantiate()
+			baloon = assistant
+	baloon.text = text
+	view_body.add_child(baloon)
+	var s = baloon.size
+	baloon.fit_content = false
+	baloon.visible_ratio = 0.1
+	view_body.move_child(baloon, view_body.get_children().size() - 3)
+	var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_method(baloon.set_custom_minimum_size, Vector2(0, s.y), Vector2(600, s.y), 0.4)
+	if text.length() > 16:
+		var tween2 = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_LINEAR)
+		tween2.tween_property(baloon, "visible_ratio", 1, 0.5)
+	else:
+		baloon.visible_ratio = 1
+	var scrollbar = scroll.get_v_scroll_bar()
+	tween.parallel().tween_property(scroll, "scroll_vertical", scrollbar.max_value, 1)
+
+func _on_input_text_changed():
+	var before_y = input.get_custom_minimum_size().y
+	var input_count = input.get_line_count()
+	for i in range(0, input.get_line_count() - 1):
+		input_count += input.get_line_wrap_count(i)
+
+	if input_count != before_input_count:
+		var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		tween.tween_method(input.set_custom_minimum_size, Vector2(0, before_y), Vector2(0, input_count*64), 0.2)
+			
+	before_input_count = input_count
+
+func _on_input_gui_input(event):
+	# var timer = input.get_node("Timer")
+	# if !timer.time_left:
+	if(event is InputEventKey) and event.shift_pressed and event.keycode == KEY_ENTER:
+		_on_user_text_submitted("")
+			# timer.start()
+	if(event is InputEventKey) and event.ctrl_pressed and event.keycode == KEY_ENTER:
+		_on_user_text_submitted("")
+			# timer.start()
