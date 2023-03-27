@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c62ed61kljiu2"]
+
+[ext_resource type="FontFile" uid="uid://ddwbtubol7fhl" path="res://assets/fonts/NotoSansJP-Regular.otf" id="1_pp8wp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8n1ah"]
+
+[resource]
+default_font = ExtResource("1_pp8wp")
+TextEdit/font_sizes/font_size = 40
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_8n1ah")

@@ -6,9 +6,9 @@ func _ready() -> void:
     var window_size: Vector2i = DisplayServer.window_get_size_with_decorations()
 
     # BASE MARGINS
-    var top: int = 8
+    var top: int = 96
     var left: int = 0
-    var bottom: int = 8
+    var bottom: int = 96
     var right: int = 0
 
     if window_size.x >= safe_area.size.x and window_size.y >= safe_area.size.y:

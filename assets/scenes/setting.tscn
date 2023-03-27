@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxe7dkpn0mvql"]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://assets/scripts/setting.gd" id="1_3vlew"]
-[ext_resource type="PackedScene" uid="uid://0vn1tm0iy5yk" path="res://assets/scenes/main.tscn" id="2_6arpt"]
+[ext_resource type="PackedScene" uid="uid://bd0oveno4776d" path="res://assets/scenes/main.tscn" id="2_slp72"]
 [ext_resource type="FontFile" uid="uid://2acuf5q3heir" path="res://addons/fontawesome/fonts/fa-solid-900.woff2" id="3_x36t3"]
 [ext_resource type="Script" path="res://addons/fontawesome/FontAwesome.gd" id="4_bbmxb"]
 
@@ -37,7 +37,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3vlew")
-main = ExtResource("2_6arpt")
+main = ExtResource("2_slp72")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2

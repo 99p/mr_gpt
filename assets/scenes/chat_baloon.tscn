@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2kgaax6q2h54"]
+
+[ext_resource type="Theme" uid="uid://c62ed61kljiu2" path="res://assets/styles/theme.tres" id="1_p45mr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dbi58"]
+bg_color = Color(0.596078, 0.494118, 0.427451, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="Chat" type="Button"]
+custom_minimum_size = Vector2(600, 60)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_p45mr")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_dbi58")
+text = "ohyeah"

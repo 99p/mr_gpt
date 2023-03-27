@@ -1,37 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://djnebgx276cwg"]
+[gd_scene load_steps=12 format=3 uid="uid://bd0oveno4776d"]
 
-[ext_resource type="Script" path="res://assets/scripts/main.gd" id="1_dvkbe"]
+[ext_resource type="Script" path="res://assets/scripts/main.gd" id="1_d4vr0"]
 [ext_resource type="Script" path="res://assets/scripts/SafeMarginContainer.gd" id="2_2m0xd"]
 [ext_resource type="FontFile" uid="uid://ddwbtubol7fhl" path="res://assets/fonts/NotoSansJP-Regular.otf" id="3_ksh4b"]
 [ext_resource type="FontFile" uid="uid://2acuf5q3heir" path="res://addons/fontawesome/fonts/fa-solid-900.woff2" id="4_xnnnh"]
 [ext_resource type="Script" path="res://addons/fontawesome/FontAwesome.gd" id="5_bh07q"]
-[ext_resource type="StyleBox" uid="uid://3qgratkxmfpk" path="res://assets/styles/input.tres" id="5_js587"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mwg5g"]
-content_margin_left = 20.0
-content_margin_bottom = 4.0
-bg_color = Color(0.101961, 0.101961, 0.101961, 0.85098)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8e55d"]
-content_margin_left = 20.0
-content_margin_bottom = 4.0
-bg_color = Color(0.168627, 0.168627, 0.168627, 0.937255)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m36xq"]
 
@@ -52,47 +25,36 @@ corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 expand_margin_left = 3.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8n1ah"]
-
-[sub_resource type="Theme" id="Theme_3df1q"]
-default_font = ExtResource("3_ksh4b")
-TextEdit/font_sizes/font_size = 36
-VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_8n1ah")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pcqo5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mwg5g"]
 content_margin_left = 20.0
 content_margin_bottom = 4.0
-bg_color = Color(0.0862745, 0.298039, 0.223529, 0.964706)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+bg_color = Color(0.101961, 0.101961, 0.101961, 0.560784)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.333333, 0.333333, 0.333333, 1)
 corner_radius_top_left = 30
 corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qrhkf"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dbi58"]
+bg_color = Color(0.278431, 0.501961, 0.337255, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_86j7s"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mlgbx"]
-
-[node name="Main" type="Control" node_paths=PackedStringArray("view_body", "system", "input", "setting_button", "scroll", "vkmock1", "vkmock2")]
+[node name="Main" type="Control" node_paths=PackedStringArray("view_body")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_dvkbe")
-view_body = NodePath("SafeMarginContainer/ScrollContainer/Body")
-system = NodePath("SafeMarginContainer/Header/System")
-input = NodePath("SafeMarginContainer/Footer/VBoxContainer/Input")
-setting_button = NodePath("SafeMarginContainer/Header/System/SettingButton")
-scroll = NodePath("SafeMarginContainer/ScrollContainer")
-vkmock1 = NodePath("SafeMarginContainer/Footer/VBoxContainer/VKmock1")
-vkmock2 = NodePath("SafeMarginContainer/ScrollContainer/Body/VKmock2")
+script = ExtResource("1_d4vr0")
+view_body = NodePath("SafeMarginContainer/HBoxContainer/ScrollContainer/Body")
 
 [node name="BG" type="ColorRect" parent="."]
 layout_mode = 1
@@ -113,75 +75,70 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_2m0xd")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SafeMarginContainer"]
+[node name="HBoxContainer" type="VBoxContainer" parent="SafeMarginContainer"]
 layout_mode = 2
+
+[node name="Control" type="Control" parent="SafeMarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SafeMarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 
-[node name="Body" type="VBoxContainer" parent="SafeMarginContainer/ScrollContainer"]
+[node name="Body" type="VBoxContainer" parent="SafeMarginContainer/HBoxContainer/ScrollContainer"]
 layout_direction = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 
-[node name="Control" type="Control" parent="SafeMarginContainer/ScrollContainer/Body"]
-custom_minimum_size = Vector2(2.08165e-12, 70)
+[node name="Control" type="Control" parent="SafeMarginContainer/HBoxContainer/ScrollContainer/Body"]
+custom_minimum_size = Vector2(2.08165e-12, 50)
 layout_mode = 2
 
-[node name="Control2" type="Control" parent="SafeMarginContainer/ScrollContainer/Body"]
-custom_minimum_size = Vector2(2.08165e-12, 60)
+[node name="Control2" type="Control" parent="SafeMarginContainer/HBoxContainer/ScrollContainer/Body"]
+custom_minimum_size = Vector2(2.08165e-12, 50)
 layout_mode = 2
 
-[node name="VKmock2" type="Control" parent="SafeMarginContainer/ScrollContainer/Body"]
+[node name="VKmock2" type="Control" parent="SafeMarginContainer/HBoxContainer/ScrollContainer/Body"]
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
 mouse_filter = 2
+
+[node name="Control2" type="Control" parent="SafeMarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
 
 [node name="Header" type="MarginContainer" parent="SafeMarginContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_right = 10
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_right = 64
 
-[node name="System" type="LineEdit" parent="SafeMarginContainer/Header"]
-custom_minimum_size = Vector2(2.08165e-12, 64)
+[node name="HBoxContainer" type="HBoxContainer" parent="SafeMarginContainer/Header"]
 layout_mode = 2
-size_flags_horizontal = 3
-focus_next = NodePath("BackButton")
-theme_override_fonts/font = ExtResource("3_ksh4b")
-theme_override_font_sizes/font_size = 26
-theme_override_styles/normal = SubResource("StyleBoxFlat_mwg5g")
-theme_override_styles/focus = SubResource("StyleBoxFlat_8e55d")
-theme_override_styles/read_only = SubResource("StyleBoxFlat_mwg5g")
-alignment = 1
-editable = false
-context_menu_enabled = false
-middle_mouse_paste_enabled = false
-caret_blink = true
-caret_blink_interval = 0.5
-language = "ja"
 
-[node name="BackButton" type="Button" parent="SafeMarginContainer/Header/System"]
+[node name="BackButton" type="Button" parent="SafeMarginContainer/Header/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(60, 60)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 13.0
-offset_top = -30.0
-offset_right = 73.0
-offset_bottom = 30.0
-grow_vertical = 2
-focus_next = NodePath("../SettingButton")
+layout_mode = 2
+focus_next = NodePath("../System/SettingButton")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_m36xq")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_5p02q")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_h464w")
 theme_override_styles/focus = SubResource("StyleBoxFlat_bx5x1")
 icon_alignment = 1
 
-[node name="FontAwesome" type="Label" parent="SafeMarginContainer/Header/System/BackButton"]
+[node name="FontAwesome" type="Label" parent="SafeMarginContainer/Header/HBoxContainer/BackButton"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -207,28 +164,39 @@ script = ExtResource("5_bh07q")
 icon_size = 40
 icon_name = "chevron-left"
 
-[node name="SettingButton" type="Button" parent="SafeMarginContainer/Header/System"]
+[node name="System" type="LineEdit" parent="SafeMarginContainer/Header/HBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_next = NodePath("../BackButton")
+theme_override_fonts/font = ExtResource("3_ksh4b")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_mwg5g")
+theme_override_styles/focus = SubResource("StyleBoxFlat_mwg5g")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_mwg5g")
+alignment = 1
+editable = false
+context_menu_enabled = false
+middle_mouse_paste_enabled = false
+caret_blink = true
+caret_blink_interval = 0.5
+language = "ja"
+
+[node name="SettingButton" type="Button" parent="SafeMarginContainer/Header/HBoxContainer/System"]
 custom_minimum_size = Vector2(60, 60)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -30.0
-offset_right = -10.0
-offset_bottom = 30.0
+layout_mode = 2
+offset_left = 500.0
+offset_right = 560.0
+offset_bottom = 64.0
 grow_horizontal = 0
 grow_vertical = 2
-focus_next = NodePath("../../../Footer/VBoxContainer/Input")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_m36xq")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_5p02q")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_h464w")
 theme_override_styles/focus = SubResource("StyleBoxFlat_bx5x1")
 icon_alignment = 1
 
-[node name="FontAwesome" type="Label" parent="SafeMarginContainer/Header/System/SettingButton"]
+[node name="FontAwesome" type="Label" parent="SafeMarginContainer/Header/HBoxContainer/System/SettingButton"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -257,84 +225,20 @@ icon_name = "gear"
 [node name="Footer" type="MarginContainer" parent="SafeMarginContainer"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_right = 10
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_right = 64
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SafeMarginContainer/Footer"]
+[node name="Chat" type="Button" parent="SafeMarginContainer/Footer"]
+custom_minimum_size = Vector2(600, 60)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_dbi58")
+text = "new chat"
 
-[node name="Input" type="TextEdit" parent="SafeMarginContainer/Footer/VBoxContainer"]
-custom_minimum_size = Vector2(2.08165e-12, 64)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
-focus_next = NodePath("../../../Header/System/BackButton")
-theme = SubResource("Theme_3df1q")
-theme_override_fonts/font = ExtResource("3_ksh4b")
-theme_override_font_sizes/font_size = 26
-theme_override_styles/normal = ExtResource("5_js587")
-theme_override_styles/focus = SubResource("StyleBoxFlat_pcqo5")
-placeholder_text = "User"
-middle_mouse_paste_enabled = false
-wrap_mode = 1
-caret_blink = true
-caret_blink_interval = 0.5
-language = "ja"
-
-[node name="SendButton" type="Button" parent="SafeMarginContainer/Footer/VBoxContainer/Input"]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -70.0
-offset_top = -60.0
-offset_right = -10.0
-offset_bottom = 4.57764e-05
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_qrhkf")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_86j7s")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_mlgbx")
-icon_alignment = 1
-
-[node name="FontAwesome" type="Label" parent="SafeMarginContainer/Footer/VBoxContainer/Input/SendButton"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -21.5
-offset_right = 20.0
-offset_bottom = 18.5
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(19, 21)
-auto_translate = false
-localize_numeral_system = false
-theme_override_colors/font_color = Color(0.905882, 0.905882, 0.905882, 1)
-theme_override_fonts/font = ExtResource("4_xnnnh")
-theme_override_font_sizes/font_size = 40
-text = ""
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("5_bh07q")
-icon_size = 40
-icon_name = "comment"
-
-[node name="VKmock1" type="Control" parent="SafeMarginContainer/Footer/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-
-[connection signal="gui_input" from="SafeMarginContainer/ScrollContainer" to="." method="_on_view_gui_input"]
-[connection signal="pressed" from="SafeMarginContainer/Header/System/BackButton" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="SafeMarginContainer/Header/System/SettingButton" to="." method="_on_settings_pressed"]
-[connection signal="focus_entered" from="SafeMarginContainer/Footer/VBoxContainer/Input" to="." method="_on_input_focus_entered"]
-[connection signal="focus_exited" from="SafeMarginContainer/Footer/VBoxContainer/Input" to="." method="_on_input_focus_exited"]
-[connection signal="gui_input" from="SafeMarginContainer/Footer/VBoxContainer/Input" to="." method="_on_input_gui_input"]
-[connection signal="text_changed" from="SafeMarginContainer/Footer/VBoxContainer/Input" to="." method="_on_input_text_changed"]
-[connection signal="pressed" from="SafeMarginContainer/Footer/VBoxContainer/Input/SendButton" to="." method="_on_send_button_pressed"]
+[connection signal="gui_input" from="SafeMarginContainer/HBoxContainer/ScrollContainer" to="." method="_on_view_gui_input"]
+[connection signal="pressed" from="SafeMarginContainer/Header/HBoxContainer/BackButton" to="." method="_on_settings_pressed"]
+[connection signal="text_submitted" from="SafeMarginContainer/Header/HBoxContainer/System" to="." method="_on_system_input_submitted"]
+[connection signal="pressed" from="SafeMarginContainer/Header/HBoxContainer/System/SettingButton" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="SafeMarginContainer/Footer/Chat" to="." method="_on_chat_baloon_pressed" binds= [""]]

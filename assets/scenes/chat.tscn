@@ -1,0 +1,284 @@
+[gd_scene load_steps=19 format=3 uid="uid://bsun3pwmi55ke"]
+
+[ext_resource type="Script" path="res://assets/scripts/chat.gd" id="1_tmetw"]
+[ext_resource type="Script" path="res://assets/scripts/SafeMarginContainer.gd" id="2_ldw6q"]
+[ext_resource type="FontFile" uid="uid://2acuf5q3heir" path="res://addons/fontawesome/fonts/fa-solid-900.woff2" id="3_7oxed"]
+[ext_resource type="Script" path="res://addons/fontawesome/FontAwesome.gd" id="4_l4bwj"]
+[ext_resource type="FontFile" uid="uid://ddwbtubol7fhl" path="res://assets/fonts/NotoSansJP-Regular.otf" id="5_ufxh1"]
+[ext_resource type="Theme" uid="uid://c62ed61kljiu2" path="res://assets/styles/theme.tres" id="6_adfhn"]
+[ext_resource type="StyleBox" uid="uid://3qgratkxmfpk" path="res://assets/styles/input.tres" id="7_uf565"]
+[ext_resource type="Script" path="res://addons/fontawesome/FontAwesomeButton.gd" id="8_dfs76"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mwg5g"]
+content_margin_left = 20.0
+content_margin_bottom = 4.0
+bg_color = Color(0.101961, 0.101961, 0.101961, 0.560784)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.333333, 0.333333, 0.333333, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pcqo5"]
+content_margin_left = 20.0
+content_margin_bottom = 4.0
+bg_color = Color(0.0862745, 0.298039, 0.223529, 0.964706)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ca73f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vu6uj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n8t8q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ok3j1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m36xq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5p02q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h464w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bx5x1"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.4, 0.4, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+expand_margin_left = 3.0
+
+[node name="Chat" type="Control" node_paths=PackedStringArray("view_body", "system", "user", "setting_button", "scroll", "vkmock1", "vkmock2")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tmetw")
+view_body = NodePath("SafeMarginContainer/ScrollContainer/Body")
+system = NodePath("SafeMarginContainer/Header/HBoxContainer/System")
+user = NodePath("SafeMarginContainer/Footer/VBoxContainer/HBoxContainer/User")
+setting_button = NodePath("")
+scroll = NodePath("SafeMarginContainer/ScrollContainer")
+vkmock1 = NodePath("SafeMarginContainer/Footer/VBoxContainer/VKmock1")
+vkmock2 = NodePath("SafeMarginContainer/ScrollContainer/Body/VKmock2")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+color = Color(0.0745098, 0.105882, 0.14902, 1)
+
+[node name="SafeMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_ldw6q")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SafeMarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="Body" type="VBoxContainer" parent="SafeMarginContainer/ScrollContainer"]
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="Control" type="Control" parent="SafeMarginContainer/ScrollContainer/Body"]
+custom_minimum_size = Vector2(2.08165e-12, 70)
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="SafeMarginContainer/ScrollContainer/Body"]
+custom_minimum_size = Vector2(2.08165e-12, 60)
+layout_mode = 2
+
+[node name="VKmock2" type="Control" parent="SafeMarginContainer/ScrollContainer/Body"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="Header" type="MarginContainer" parent="SafeMarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_right = 64
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SafeMarginContainer/Header"]
+layout_mode = 2
+
+[node name="System" type="LineEdit" parent="SafeMarginContainer/Header/HBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_next = NodePath("../../../BackButton")
+theme_override_fonts/font = ExtResource("5_ufxh1")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_mwg5g")
+theme_override_styles/focus = SubResource("StyleBoxFlat_mwg5g")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_mwg5g")
+alignment = 1
+context_menu_enabled = false
+middle_mouse_paste_enabled = false
+caret_blink = true
+caret_blink_interval = 0.5
+language = "ja"
+
+[node name="Control" type="Control" parent="SafeMarginContainer/Header"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="Spinner" type="Label" parent="SafeMarginContainer/Header/Control"]
+visible = false
+modulate = Color(0.509804, 0.509804, 0.509804, 1)
+custom_minimum_size = Vector2(70, 60)
+layout_mode = 2
+offset_top = 5.0
+offset_right = 70.0
+offset_bottom = 65.0
+pivot_offset = Vector2(35, 30)
+size_flags_horizontal = 8
+auto_translate = false
+localize_numeral_system = false
+theme_override_colors/font_color = Color(0.729412, 0.729412, 0.729412, 1)
+theme_override_fonts/font = ExtResource("3_7oxed")
+theme_override_font_sizes/font_size = 40
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_l4bwj")
+icon_size = 40
+icon_name = "circle-notch"
+
+[node name="Footer" type="MarginContainer" parent="SafeMarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_right = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SafeMarginContainer/Footer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SafeMarginContainer/Footer/VBoxContainer"]
+layout_mode = 2
+
+[node name="User" type="TextEdit" parent="SafeMarginContainer/Footer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+focus_next = NodePath("../SendButton")
+theme = ExtResource("6_adfhn")
+theme_override_fonts/font = ExtResource("5_ufxh1")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = ExtResource("7_uf565")
+theme_override_styles/focus = SubResource("StyleBoxFlat_pcqo5")
+middle_mouse_paste_enabled = false
+wrap_mode = 1
+caret_blink = true
+caret_blink_interval = 0.5
+language = "ja"
+
+[node name="SendButton" type="Button" parent="SafeMarginContainer/Footer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(68, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+auto_translate = false
+localize_numeral_system = false
+focus_next = NodePath("../../../../BackButton")
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_colors/font_pressed_color = Color(0.529412, 0.741176, 1, 1)
+theme_override_colors/font_hover_color = Color(0.933333, 0.933333, 0.933333, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_7oxed")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ca73f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vu6uj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_n8t8q")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ok3j1")
+text = ""
+script = ExtResource("8_dfs76")
+icon_size = 40
+icon_name = "comment"
+
+[node name="VKmock1" type="Control" parent="SafeMarginContainer/Footer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="BackButton" type="Button" parent="SafeMarginContainer"]
+custom_minimum_size = Vector2(70, 66)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_m36xq")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5p02q")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_h464w")
+theme_override_styles/focus = SubResource("StyleBoxFlat_bx5x1")
+icon_alignment = 1
+
+[node name="FontAwesome" type="Label" parent="SafeMarginContainer/BackButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(19, 21)
+auto_translate = false
+localize_numeral_system = false
+theme_override_colors/font_color = Color(0.905882, 0.905882, 0.905882, 1)
+theme_override_fonts/font = ExtResource("3_7oxed")
+theme_override_font_sizes/font_size = 40
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_l4bwj")
+icon_size = 40
+icon_name = "chevron-left"
+
+[connection signal="gui_input" from="SafeMarginContainer/ScrollContainer" to="." method="_on_view_gui_input"]
+[connection signal="focus_exited" from="SafeMarginContainer/Header/HBoxContainer/System" to="." method="_on_system_focus_exited"]
+[connection signal="text_submitted" from="SafeMarginContainer/Header/HBoxContainer/System" to="." method="_on_system_input_submitted"]
+[connection signal="focus_entered" from="SafeMarginContainer/Footer/VBoxContainer/HBoxContainer/User" to="." method="_on_user_input_focus_entered"]
+[connection signal="focus_exited" from="SafeMarginContainer/Footer/VBoxContainer/HBoxContainer/User" to="." method="_on_user_input_focus_exited"]
+[connection signal="gui_input" from="SafeMarginContainer/Footer/VBoxContainer/HBoxContainer/User" to="." method="_on_user_input_gui_input"]
+[connection signal="text_changed" from="SafeMarginContainer/Footer/VBoxContainer/HBoxContainer/User" to="." method="_on_user_input_text_changed"]
+[connection signal="pressed" from="SafeMarginContainer/Footer/VBoxContainer/HBoxContainer/SendButton" to="." method="_on_send_button_pressed"]
+[connection signal="pressed" from="SafeMarginContainer/BackButton" to="." method="_on_back_button_pressed"]

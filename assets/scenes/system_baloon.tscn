@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgsyr7ns822a7"]
+
+[ext_resource type="Theme" uid="uid://c62ed61kljiu2" path="res://assets/styles/theme.tres" id="1_5ak30"]
+[ext_resource type="StyleBox" uid="uid://cg3tgf76csbc3" path="res://assets/styles/system.tres" id="1_hdbkf"]
+[ext_resource type="Script" path="res://assets/scripts/baloon.gd" id="2_xa6jn"]
+[ext_resource type="FontFile" uid="uid://ddwbtubol7fhl" path="res://assets/fonts/NotoSansJP-Regular.otf" id="2_y2a7y"]
+
+[node name="User" type="RichTextLabel"]
+custom_minimum_size = Vector2(600, 2.08165e-12)
+offset_right = 600.0
+offset_bottom = 69.0
+scale = Vector2(0.996785, 1.00845)
+size_flags_horizontal = 4
+focus_mode = 2
+mouse_filter = 2
+theme = ExtResource("1_5ak30")
+theme_override_fonts/normal_font = ExtResource("2_y2a7y")
+theme_override_font_sizes/normal_font_size = 28
+theme_override_styles/focus = ExtResource("1_hdbkf")
+theme_override_styles/normal = ExtResource("1_hdbkf")
+bbcode_enabled = true
+text = "[center]User[/center]"
+fit_content = true
+scroll_active = false
+scroll_following = true
+selection_enabled = true
+language = "ja"
+script = ExtResource("2_xa6jn")
