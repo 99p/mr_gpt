@@ -17,3 +17,5 @@ theme = ExtResource("1_p45mr")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_dbi58")
 text = "ohyeah"
+text_overrun_behavior = 4
+clip_text = true

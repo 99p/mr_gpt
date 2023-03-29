@@ -1,24 +1,56 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3ky1rgu3d87e"]
+[gd_scene load_steps=10 format=3 uid="uid://dsoyl6po4ybdh"]
 
 [ext_resource type="Theme" uid="uid://c62ed61kljiu2" path="res://assets/styles/theme.tres" id="1_3jbin"]
 [ext_resource type="StyleBox" uid="uid://de2sqbsxoj51b" path="res://assets/styles/assistant.tres" id="1_b8a50"]
 [ext_resource type="FontFile" uid="uid://ddwbtubol7fhl" path="res://assets/fonts/NotoSansJP-Regular.otf" id="2_sten7"]
+[ext_resource type="FontFile" uid="uid://2acuf5q3heir" path="res://addons/fontawesome/fonts/fa-solid-900.woff2" id="4_h7gl6"]
+[ext_resource type="Script" path="res://addons/fontawesome/FontAwesomeButton.gd" id="5_xu54k"]
 
-[node name="Asistant" type="RichTextLabel"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pjolv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uyyyj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pxgki"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ypo7"]
+
+[node name="Assistant" type="HBoxContainer"]
+offset_right = 684.0
+offset_bottom = 235.0
+
+[node name="Assistant_baloon" type="RichTextLabel" parent="."]
 custom_minimum_size = Vector2(600, 2.08165e-12)
-offset_right = 600.0
-offset_bottom = 66.0
-size_flags_horizontal = 0
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
 focus_mode = 2
-mouse_filter = 2
 theme = ExtResource("1_3jbin")
 theme_override_fonts/normal_font = ExtResource("2_sten7")
 theme_override_font_sizes/normal_font_size = 28
 theme_override_styles/focus = ExtResource("1_b8a50")
 theme_override_styles/normal = ExtResource("1_b8a50")
-text = "Asistant"
+text = "Assistant"
 fit_content = true
 scroll_active = false
 scroll_following = true
 selection_enabled = true
 language = "ja"
+
+[node name="ClipboardButton" type="Button" parent="."]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+auto_translate = false
+localize_numeral_system = false
+theme_override_colors/font_color = Color(0.72549, 0.72549, 0.72549, 1)
+theme_override_fonts/font = ExtResource("4_h7gl6")
+theme_override_font_sizes/font_size = 38
+theme_override_styles/normal = SubResource("StyleBoxEmpty_pjolv")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_uyyyj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_pxgki")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ypo7")
+text = ""
+script = ExtResource("5_xu54k")
+icon_size = 38
+icon_name = "clipboard"

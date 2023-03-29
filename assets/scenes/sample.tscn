@@ -1,0 +1,98 @@
+[gd_scene load_steps=2 format=3 uid="uid://cadq7rxvang3y"]
+
+[ext_resource type="Script" path="res://assets/scripts/sample.gd" id="1_qphlc"]
+
+[node name="Sample" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qphlc")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.341176, 0.384314, 0.556863, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TextEdit" type="TextEdit" parent="BG/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 400)
+layout_mode = 2
+text = "asdfasfsafasf
+asd
+
+asf
+s
+
+a
+sdf
+as
+dfasdfsafsa
+fas
+fd
+asdfasfsa
+fas
+fas
+dfsa
+fa
+sfds
+fas
+f
+asdf
+a
+sdf"
+placeholder_text = "textedit"
+
+[node name="Button" type="Button" parent="BG/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "vibrate_handheld
+10"
+
+[node name="Button2" type="Button" parent="BG/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "50"
+
+[node name="Button3" type="Button" parent="BG/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "100"
+
+[node name="Button4" type="Button" parent="BG/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "500"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BG/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="BG/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed" binds= [10]]
+[connection signal="pressed" from="BG/MarginContainer/VBoxContainer/Button2" to="." method="_on_button_pressed" binds= [50]]
+[connection signal="pressed" from="BG/MarginContainer/VBoxContainer/Button3" to="." method="_on_button_pressed" binds= [100]]
+[connection signal="pressed" from="BG/MarginContainer/VBoxContainer/Button4" to="." method="_on_button_pressed" binds= [500]]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bbcaotoeasbmk"]
+[gd_scene load_steps=11 format=3 uid="uid://ctaxqtng00gfv"]
 
-[ext_resource type="Script" path="res://assets/scripts/setting.gd" id="1_rdwss"]
-[ext_resource type="Script" path="res://assets/scripts/SafeMarginContainer.gd" id="2_bhbjv"]
-[ext_resource type="FontFile" uid="uid://2acuf5q3heir" path="res://addons/fontawesome/fonts/fa-solid-900.woff2" id="3_6fkg7"]
-[ext_resource type="Script" path="res://addons/fontawesome/FontAwesome.gd" id="4_w16qa"]
+[ext_resource type="Script" path="res://assets/scripts/setting.gd" id="1_3vlew"]
+[ext_resource type="PackedScene" uid="uid://cokax3re70cxh" path="res://assets/scenes/chat_index.tscn" id="2_slp72"]
+[ext_resource type="Script" path="res://assets/scripts/SafeMarginContainer.gd" id="3_3ta6s"]
+[ext_resource type="FontFile" uid="uid://2acuf5q3heir" path="res://addons/fontawesome/fonts/fa-solid-900.woff2" id="3_x36t3"]
+[ext_resource type="Script" path="res://addons/fontawesome/FontAwesome.gd" id="4_bbmxb"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2pphe"]
 
@@ -39,7 +40,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_rdwss")
+script = ExtResource("1_3vlew")
+main = ExtResource("2_slp72")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -57,7 +59,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_bhbjv")
+script = ExtResource("3_3ta6s")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SafeMarginContainer"]
 layout_mode = 2
@@ -75,12 +77,12 @@ offset_bottom = 64.0
 auto_translate = false
 localize_numeral_system = false
 theme_override_colors/font_color = Color(0.635294, 0.635294, 0.635294, 1)
-theme_override_fonts/font = ExtResource("3_6fkg7")
+theme_override_fonts/font = ExtResource("3_x36t3")
 theme_override_font_sizes/font_size = 64
 text = ""
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("4_w16qa")
+script = ExtResource("4_bbmxb")
 icon_size = 64
 icon_name = "arrow-left"
 

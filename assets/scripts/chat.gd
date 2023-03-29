@@ -25,18 +25,12 @@ var before_rows
 var user_focus = false
 var title
 var first_touch = true
+var chat_id: String
 
 enum vkAnim { UP, DOWN }
 
 
 func _ready():
-	if Global.chat_id == "":
-		Global.chat_id = uuid.v4()
-	else:
-		var saved_data = load_chat(Global.chat_id)
-		messages = saved_data["messages"]
-		title = saved_data["title"]
-		load_chats()
 	
 	# get_node("SafeMarginContainer/Header").modulate.a = 0.1
 	scroll.follow_focus = true
@@ -174,25 +168,43 @@ func add_baloon(role: String, text):
 			baloon = user_baloon
 		"assistant":
 			assistant_baloon = _assistant_baloon.instantiate()
-			baloon = assistant_baloon
+			baloon = assistant_baloon.get_node("Assistant_baloon")
 		"system":
 			system_baloon = _system_baloon.instantiate()
 			baloon = system_baloon
 			text = '[center]%s[/center]' % text
 			threshold = 32
+
 	baloon.text = text
-	view_body.add_child(baloon)
+
+	#クリップボード追加による対応
+	#HBOXが追加されたため
+	match role:
+		"assistant":
+			view_body.add_child(assistant_baloon)
+			view_body.move_child(assistant_baloon, view_body.get_children().size() - 3)
+			assistant_baloon.get_node("ClipboardButton").pressed.connect(_on_clipboard_button_pressed.bind(baloon.text))
+		_:
+			view_body.add_child(baloon)
+			view_body.move_child(baloon, view_body.get_children().size() - 3)
+
+	#fit_contet = true の縦幅を記録
+	baloon.fit_content = true
 	var s = baloon.size
 	baloon.fit_content = false
-	baloon.visible_ratio = 0.1
-	view_body.move_child(baloon, view_body.get_children().size() - 3)
+
+	#横スクロールアニメーション
 	var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_method(baloon.set_custom_minimum_size, Vector2(0, s.y), Vector2(600, s.y), 0.4)
+
+	#文字が徐々に出るアニメーション
+	baloon.visible_ratio = 0.1
 	if text.length() > threshold:
 		var tween2 = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_LINEAR)
 		tween2.tween_property(baloon, "visible_ratio", 1, 0.5)
 	else:
 		baloon.visible_ratio = 1
+
 	#下にスクロール
 	var scrollbar = scroll.get_v_scroll_bar()
 	tween.parallel().tween_property(scroll, "scroll_vertical", scrollbar.max_value - 160, 1)
@@ -255,11 +267,12 @@ func save():
 	var data = { 'title': title, 'messages': messages }
 
 	DirAccess.make_dir_absolute("user://chats/")
-	var f = FileAccess.open("user://chats/%s" % Global.chat_id, FileAccess.WRITE)
+	var f = FileAccess.open("user://chats/%s" % chat_id, FileAccess.WRITE)
 	f.store_line(JSON.stringify(data, "\t"))
 	
 func _on_back_button_pressed():
-	get_tree().change_scene_to_file('res://assets/scenes/main.tscn')
+	# get_tree().change_scene_to_file('res://assets/scenes/chat_index.tscn')
+	exit()
 
 func load_chats():
 	for message in messages:
@@ -294,3 +307,22 @@ func spinner(show_spinner=true):
 		# var spinner_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_LINEAR)
 		# spinner_tween.tween_property(_spinner, "modulate", Color(55,55,55,0), 1)
 		# spinner_tween.parallel().tween_property(_spinner, "rotation", TAU, 1)
+
+func _on_clipboard_button_pressed(text):
+	DisplayServer.clipboard_set(text)
+	# print(text)
+	# print("ok")
+
+func enter(scene, id: String):
+	scene.add_child(self)
+	if id == "":
+		chat_id = uuid.v4()
+	else:
+		chat_id = id
+		var saved_data = load_chat(chat_id)
+		messages = saved_data["messages"]
+		title = saved_data["title"]
+		load_chats()
+	
+func exit():
+	queue_free()
