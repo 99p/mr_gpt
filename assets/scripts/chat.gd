@@ -26,6 +26,8 @@ var user_focus = false
 var title
 var first_touch = true
 var chat_id: String
+var from
+@onready var swipe_point = $Control
 
 enum vkAnim { UP, DOWN }
 
@@ -129,18 +131,18 @@ func vkAnimation(mode):
 			tween.parallel().tween_method(vkmock2.set_custom_minimum_size, Vector2(0, vk_height_before_y), Vector2(0, vk_height), 0.425)
 			## await get_tree().create_timer(0.5).timeout
 			## await get_tree().process_frame
-			if first_touch:
-				first_touch = false
-			else:
-				var scrollbar = scroll.get_v_scroll_bar()
-				tween.parallel().tween_property(scroll, "scroll_vertical", scrollbar.max_value, 0.425)
+			# if first_touch:
+			# 	first_touch = false
+			# else:
+			# 	var scrollbar = scroll.get_v_scroll_bar()
+			# 	tween.parallel().tween_property(scroll, "scroll_vertical", scrollbar.max_value, 0.425)
 		vkAnim.DOWN:
 			# vkmock1.set_custom_minimum_size(Vector2(0, 0))
 			var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 			tween.tween_method(vkmock1.set_custom_minimum_size, Vector2(0, vk_height), Vector2(0, 0), 0.425)
 			tween.parallel().tween_method(vkmock2.set_custom_minimum_size, Vector2(0, vk_height), Vector2(0, 0), 0.425)
-			var scrollbar = scroll.get_v_scroll_bar()
-			tween.parallel().tween_property(scroll, "scroll_vertical", scrollbar.max_value, 0.425)
+			# var scrollbar = scroll.get_v_scroll_bar()
+			# tween.parallel().tween_property(scroll, "scroll_vertical", scrollbar.max_value, 0.425)
 
 
 # input外タップでアンフォーカス
@@ -183,7 +185,6 @@ func add_baloon(role: String, text):
 		"assistant":
 			view_body.add_child(assistant_baloon)
 			view_body.move_child(assistant_baloon, view_body.get_children().size() - 3)
-			assistant_baloon.get_node("ClipboardButton").pressed.connect(_on_clipboard_button_pressed.bind(baloon.text))
 		_:
 			view_body.add_child(baloon)
 			view_body.move_child(baloon, view_body.get_children().size() - 3)
@@ -308,11 +309,6 @@ func spinner(show_spinner=true):
 		# spinner_tween.tween_property(_spinner, "modulate", Color(55,55,55,0), 1)
 		# spinner_tween.parallel().tween_property(_spinner, "rotation", TAU, 1)
 
-func _on_clipboard_button_pressed(text):
-	DisplayServer.clipboard_set(text)
-	# print(text)
-	# print("ok")
-
 func enter(scene, id: String):
 	scene.add_child(self)
 	if id == "":
@@ -326,3 +322,20 @@ func enter(scene, id: String):
 	
 func exit():
 	queue_free()
+
+var swipe_initial_pos
+func _on_control_gui_input(event):
+	if (event is InputEventMouseButton) and event.is_pressed():
+		swipe_initial_pos = event.position
+		print(self.size.x / 2)
+	if (event is InputEventScreenDrag):
+		var pos = swipe_initial_pos - event.position
+		var deadpoint = self.size.x / 2
+		self.position.x = -pos.x
+		if self.position.x > deadpoint:
+			var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+			tween.tween_property(self, "position:x", self.size.x, 0.5)
+			tween.tween_callback(exit)
+	if (event is InputEventMouseButton) and !event.is_pressed():
+		self.position.x = 0
+

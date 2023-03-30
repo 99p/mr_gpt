@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlky8kganhkf7"]
+
+[ext_resource type="Theme" uid="uid://c62ed61kljiu2" path="res://assets/styles/theme.tres" id="1_woqjo"]
+[ext_resource type="StyleBox" uid="uid://cg3tgf76csbc3" path="res://assets/styles/system.tres" id="3_qka0f"]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 0
+
+[node name="Menu" type="Button" parent="."]
+custom_minimum_size = Vector2(150, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+theme = ExtResource("1_woqjo")
+theme_override_styles/normal = ExtResource("3_qka0f")
+theme_override_styles/focus = ExtResource("3_qka0f")
+text = "Copy"
+language = "ja"

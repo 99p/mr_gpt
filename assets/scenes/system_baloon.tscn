@@ -11,7 +11,7 @@ offset_right = 600.0
 offset_bottom = 69.0
 scale = Vector2(0.996785, 1.00845)
 size_flags_horizontal = 4
-focus_mode = 2
+mouse_filter = 1
 theme = ExtResource("1_5ak30")
 theme_override_fonts/normal_font = ExtResource("2_y2a7y")
 theme_override_font_sizes/normal_font_size = 28
@@ -22,6 +22,7 @@ text = "[center]User[/center]"
 fit_content = true
 scroll_active = false
 scroll_following = true
-selection_enabled = true
 language = "ja"
 script = ExtResource("2_xa6jn")
+
+[node name="Timer" type="Timer" parent="."]

@@ -87,8 +87,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-focus_mode = 2
+focus_mode = 1
 color = Color(0.0745098, 0.105882, 0.14902, 1)
+
+[node name="Control" type="Control" parent="."]
+top_level = true
+custom_minimum_size = Vector2(100, 2.08165e-12)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 100.0
+grow_vertical = 2
 
 [node name="SafeMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -102,6 +111,7 @@ script = ExtResource("2_ldw6q")
 [node name="ScrollContainer" type="ScrollContainer" parent="SafeMarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_mode = 1
 follow_focus = true
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
@@ -116,10 +126,12 @@ theme_override_constants/separation = 20
 [node name="Control" type="Control" parent="SafeMarginContainer/ScrollContainer/Body"]
 custom_minimum_size = Vector2(2.08165e-12, 70)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Control2" type="Control" parent="SafeMarginContainer/ScrollContainer/Body"]
 custom_minimum_size = Vector2(2.08165e-12, 60)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="VKmock2" type="Control" parent="SafeMarginContainer/ScrollContainer/Body"]
 layout_mode = 2
@@ -274,6 +286,7 @@ script = ExtResource("4_l4bwj")
 icon_size = 40
 icon_name = "chevron-left"
 
+[connection signal="gui_input" from="Control" to="." method="_on_control_gui_input"]
 [connection signal="gui_input" from="SafeMarginContainer/ScrollContainer" to="." method="_on_view_gui_input"]
 [connection signal="focus_exited" from="SafeMarginContainer/Header/HBoxContainer/System" to="." method="_on_system_focus_exited"]
 [connection signal="text_submitted" from="SafeMarginContainer/Header/HBoxContainer/System" to="." method="_on_system_input_submitted"]
