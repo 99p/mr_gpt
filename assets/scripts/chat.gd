@@ -40,9 +40,6 @@ func _ready():
 	if not f: f.store_string("")
 	apiKey = f.get_as_text()
 	
-	#grab_focus()がScrollContainerのfollow_focusに作用しない
-	#回避策としてcall_defereed("grab_focus")を使用
-	user.call_deferred("grab_focus")
 
 func gpt(role: Node):
 	spinner(true)
@@ -74,7 +71,7 @@ func _on_http_request_request_completed(_result:int, _response_code:int, _header
 	spinner(false)
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	messages.append(json.choices[0].message)
-	print(messages); print('\n')
+	# print(messages); print('\n')
 
 	add_baloon("assistant", json.choices[0].message.content)
 	save()
@@ -313,6 +310,9 @@ func enter(scene, id: String):
 	scene.add_child(self)
 	if id == "":
 		chat_id = uuid.v4()
+		#grab_focus()がScrollContainerのfollow_focusに作用しない
+		#回避策としてcall_defereed("grab_focus")を使用
+		user.call_deferred("grab_focus")
 	else:
 		chat_id = id
 		var saved_data = load_chat(chat_id)
@@ -327,7 +327,7 @@ var swipe_initial_pos
 func _on_control_gui_input(event):
 	if (event is InputEventMouseButton) and event.is_pressed():
 		swipe_initial_pos = event.position
-		print(self.size.x / 2)
+		# print(self.size.x / 2)
 	if (event is InputEventScreenDrag):
 		var pos = swipe_initial_pos - event.position
 		var deadpoint = self.size.x / 2

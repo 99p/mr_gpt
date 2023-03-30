@@ -1,7 +1,8 @@
 extends Control
 
 func _ready():
-	print(OS.low_processor_usage_mode)
+	pass
+	# print(OS.low_processor_usage_mode)
 
 func _process(_delta):
 	# print(DisplayServer.mouse_get_position())
@@ -19,5 +20,5 @@ func _process(_delta):
 func _on_button_pressed(value):
 	Input.vibrate_handheld(value)
 	
-func enter(from)
+func enter(from):
 	from.add_child(self)
